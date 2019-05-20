@@ -8,28 +8,24 @@ namespace Api.Controllers
     [ApiController]
     public class LoansController : ControllerBase
     {
-        // GET api/values
         [HttpGet]
         public IEnumerable<LoanEntity> Get([FromServices] ILoanRepository loanRepository)
         {
             return loanRepository.GetLoans();
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public LoanEntity Get([FromServices] ILoanRepository loanRepository, int id)
         {
             return loanRepository.GetLoan(id);
         }
 
-        // POST api/values
         [HttpPost]
         public void Post([FromServices] ILoanRepository loanRepository, string value)
         {
             loanRepository.CreateLoan(new LoanEntity() { Data = value });
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         public void Put([FromServices] ILoanRepository loanRepository, int id, string value)
         {
@@ -38,7 +34,6 @@ namespace Api.Controllers
             loanRepository.UpdateLoan(entity);
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete([FromServices] ILoanRepository loanRepository, int id)
         {

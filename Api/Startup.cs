@@ -21,12 +21,6 @@ namespace Api
         {
             new PersistencyRegistry(Configuration, services);
 
-            // Repositories
-            //services.AddTransient<ILoanRepository, LoanRepository>();
-
-            //services.AddDbContext<LoanRepository>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
