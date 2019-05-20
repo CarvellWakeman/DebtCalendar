@@ -50,7 +50,7 @@ namespace Persistence.Migrations
 
                     b.Property<decimal>("EndBalance");
 
-                    b.Property<int?>("LoanEntityId");
+                    b.Property<int>("LoanId");
 
                     b.Property<decimal>("MinimumInterest");
 
@@ -62,16 +62,17 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("LoanEntityId");
+                    b.HasIndex("LoanId");
 
                     b.ToTable("LoanPayment");
                 });
 
             modelBuilder.Entity("Domain.Loan.LoanPaymentEntity", b =>
                 {
-                    b.HasOne("Domain.Loan.LoanEntity")
+                    b.HasOne("Domain.Loan.LoanEntity", "Loan")
                         .WithMany("Payments")
-                        .HasForeignKey("LoanEntityId");
+                        .HasForeignKey("LoanId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

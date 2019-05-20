@@ -30,30 +30,30 @@ namespace Persistence.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    LoanId = table.Column<int>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),
                     StartBalance = table.Column<decimal>(nullable: false),
                     MinimumInterest = table.Column<decimal>(nullable: false),
                     MinimumPrincipal = table.Column<decimal>(nullable: false),
                     AdditionalPrincipal = table.Column<decimal>(nullable: false),
                     TotalPayment = table.Column<decimal>(nullable: false),
-                    EndBalance = table.Column<decimal>(nullable: false),
-                    LoanEntityId = table.Column<int>(nullable: true)
+                    EndBalance = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LoanPayment", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_LoanPayment_Loan_LoanEntityId",
-                        column: x => x.LoanEntityId,
+                        name: "FK_LoanPayment_Loan_LoanId",
+                        column: x => x.LoanId,
                         principalTable: "Loan",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_LoanPayment_LoanEntityId",
+                name: "IX_LoanPayment_LoanId",
                 table: "LoanPayment",
-                column: "LoanEntityId");
+                column: "LoanId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

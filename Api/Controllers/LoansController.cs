@@ -1,5 +1,6 @@
 ﻿using Domain.Loan;
 using Microsoft.AspNetCore.Mvc;
+using Persistence.Loan;
 using System.Collections.Generic;
 
 namespace Api.Controllers
@@ -26,7 +27,7 @@ namespace Api.Controllers
             loanRepository.CreateLoan(loan);
         }
 
-        [HttpPost]
+        [HttpPost("Payment")]
         public void CreateLoanPayment([FromServices] ILoanRepository loanRepository, int id, LoanPaymentEntity payment)
         {
             var loan = loanRepository.GetLoan(id);

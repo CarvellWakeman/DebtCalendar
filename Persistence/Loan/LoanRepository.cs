@@ -14,6 +14,15 @@ namespace Persistence.Loan
             Database.EnsureCreated();
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<LoanEntity>()
+                .HasMany(l => l.Payments)
+                .WithOne(lp => lp.Loan)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+
         public void CreateLoan(LoanEntity loan)
         {
             Loans.Add(loan);

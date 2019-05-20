@@ -16,6 +16,7 @@ namespace Domain.Loan
         public string Description { get; set; }
         public DateTime PaymentDate { get; set; }
         public float InterestRate { get; set; }
-        public IEnumerable<LoanPaymentEntity> Payments { get; set; }
+
+        public ICollection<LoanPaymentEntity> Payments { get; set; }
     }
 }

@@ -12,6 +12,8 @@ namespace Domain.Loan
         {
         }
 
+        public LoanEntity Loan { get; set; }
+
         public DateTime Date { get; set; }
         public decimal StartBalance { get; set; }
         public decimal MinimumInterest { get; set; }
