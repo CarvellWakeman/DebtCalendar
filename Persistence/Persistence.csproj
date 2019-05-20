@@ -133,6 +133,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Loan\LoanRepository.cs" />
+    <Compile Include="Migrations\20190520032944_Initial.cs" />
+    <Compile Include="Migrations\20190520032944_Initial.designer.cs">
+      <DependentUpon>20190520032944_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\LoanRepositoryModelSnapshot.cs" />
     <Compile Include="PersistencyRegistry.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -145,5 +150,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers
 {
@@ -9,11 +10,17 @@ namespace Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var info = new {
-                loans = "/api/loans"
+            var result = new
+            {
+                Application = "Loans API",
+                Info = new
+                {
+                    Swagger = UriHelper.BuildAbsolute(Request.Scheme, Request.Host, Request.PathBase, "/swagger")
+                }
             };
 
-            return Ok(info);
+            return Ok(result);
+
         }
     }
 }

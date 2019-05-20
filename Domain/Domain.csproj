@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Loan\ILoanRepository.cs" />
+    <Compile Include="Loan\LoanPaymentEntity.cs" />
     <Compile Include="Loan\LoanEntity.cs" />
     <Compile Include="Shared\Entity.cs" />
   </ItemGroup>
