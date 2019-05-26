@@ -43,12 +43,14 @@ namespace Persistence.Loan
 
         public LoanEntity GetLoan(int id)
         {
-            return Loans.FirstOrDefault(l => l.Id == id);
+            var loans = GetLoans();
+            return loans.FirstOrDefault(l => l.Id == id);
         }
 
         public IEnumerable<LoanEntity> GetLoans()
         {
-            return Loans;
+            return Loans
+                .Include(loan => loan.Payments);
         }
     }
 }
