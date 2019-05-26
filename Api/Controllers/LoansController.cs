@@ -1,6 +1,7 @@
 ﻿using Api.Mapping;
 using Api.Models;
 using Domain.Loan;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
@@ -8,24 +9,28 @@ namespace Api.Controllers
 {
     [Route("api/loans")]
     [ApiController]
-    public class LoansController : ControllerBase
+    [EnableCors("AllowOriginPolicy")]
+    public class LoansController : ApiControllerBase
     {
         [HttpGet]
-        public IEnumerable<LoanDto> GetLoans([FromServices] ILoanRepository loanRepository)
+        public ActionResult<IEnumerable<LoanDto>> GetLoans([FromServices] ILoanRepository loanRepository)
         {
-            return loanRepository.GetLoans().ToDto();
+            var loans = loanRepository.GetLoans().ToDto();
+            return Ok(loans);
         }
 
         [HttpGet("{id}")]
-        public LoanDto GetLoan([FromServices] ILoanRepository loanRepository, int id)
+        public ActionResult<LoanDto> GetLoan([FromServices] ILoanRepository loanRepository, int id)
         {
-            return loanRepository.GetLoan(id).ToDto();
+            var loan = loanRepository.GetLoan(id).ToDto();
+            return Ok(loan);
         }
 
         [HttpGet("{id}/payments")]
-        public IEnumerable<LoanPaymentDto> GetLoanPayments([FromServices] ILoanRepository loanRepository, int id)
+        public ActionResult<IEnumerable<LoanPaymentDto>> GetLoanPayments([FromServices] ILoanRepository loanRepository, int id)
         {
-            return loanRepository.GetLoan(id).Payments.ToDto();
+            var payments = loanRepository.GetLoan(id).Payments.ToDto();
+            return Ok(payments);
         }
 
         [HttpPost]

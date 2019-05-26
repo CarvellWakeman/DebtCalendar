@@ -12,6 +12,7 @@ namespace Api.Mapping
         {
             return new LoanDto()
             {
+                Id = loan.Id,
                 Lender = loan.Lender,
                 Description = loan.Description,
                 InterestRate = loan.InterestRate,
