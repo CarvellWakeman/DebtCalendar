@@ -1,8 +1,8 @@
-﻿using Domain.Loan;
+﻿using Api.Mapping;
+using Api.Models;
+using Domain.Loan;
 using Microsoft.AspNetCore.Mvc;
-using Persistence.Loan;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Api.Controllers
 {
@@ -11,15 +11,21 @@ namespace Api.Controllers
     public class LoansController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<LoanEntity> GetLoans([FromServices] ILoanRepository loanRepository)
+        public IEnumerable<LoanDto> GetLoans([FromServices] ILoanRepository loanRepository)
         {
-            return loanRepository.GetLoans().ToList();
+            return loanRepository.GetLoans().ToDto();
         }
 
         [HttpGet("{id}")]
-        public LoanEntity GetLoan([FromServices] ILoanRepository loanRepository, int id)
+        public LoanDto GetLoan([FromServices] ILoanRepository loanRepository, int id)
         {
-            return loanRepository.GetLoan(id);
+            return loanRepository.GetLoan(id).ToDto();
+        }
+
+        [HttpGet("{id}/payments")]
+        public IEnumerable<LoanPaymentDto> GetLoanPayments([FromServices] ILoanRepository loanRepository, int id)
+        {
+            return loanRepository.GetLoan(id).Payments.ToDto();
         }
 
         [HttpPost]
