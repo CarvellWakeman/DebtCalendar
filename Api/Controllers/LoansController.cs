@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Persistence.Loan;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Api.Controllers
 {
@@ -12,7 +13,7 @@ namespace Api.Controllers
         [HttpGet]
         public IEnumerable<LoanEntity> GetLoans([FromServices] ILoanRepository loanRepository)
         {
-            return loanRepository.GetLoans();
+            return loanRepository.GetLoans().ToList();
         }
 
         [HttpGet("{id}")]

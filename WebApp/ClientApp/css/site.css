@@ -1,0 +1,85 @@
+html {
+    
+}
+
+body {
+    margin: 0 !important;
+    box-sizing: border-box;
+}
+
+html, body, #react-app, div[data-reactroot] {
+    height: 100%;
+}
+
+/* Highlighting rules for nav menu items */
+.main-nav li a.active,
+.main-nav li a.active:hover,
+.main-nav li a.active:focus {
+    background-color: #4189C7;
+    color: white;
+}
+
+/* Keep the nav menu independent of scrolling and on top of other items */
+.main-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+}
+
+/* White Text */
+.text-white {
+    color: #9d9d9d;
+}
+
+/* User Information section */
+.user-info {
+    margin-right: 10px;
+    text-align: right;
+    vertical-align: middle;
+}
+
+/* Parent container */
+#parent-container {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation bar */
+
+/* Main Content */
+.main-container {
+    display: flex;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    flex: 1;
+}
+
+/* Routes Container */
+#routes-container {
+    display: flex;
+    flex: 1;
+}
+
+/* Login screen */
+
+/* Register screen */
+.register-button {
+    margin-right: 1rem;
+}
+
+/* User details page */
+#user-details {
+    flex: 1;
+}
+.bd-lead {
+    max-width: 80%;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Account details page */
+#account-details {
+    flex: 1;
+}
