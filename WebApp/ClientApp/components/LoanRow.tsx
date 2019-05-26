@@ -3,39 +3,24 @@ import { ILoan } from '../interfaces/ILoan';
 import { ILoanPayment } from '../interfaces/ILoanPayment';
 import { NavLink } from 'react-router-dom';
 import { LoanPaymentRow } from './LoanPaymentRow';
+import { Helpers } from '../api/Helpers';
 
 interface Props {
     loan: ILoan;
     linkTo: string;
 }
 
+interface State {
+    helpers: Helpers;
+}
+
 // Shows information for a single loan, links to detailed view of loan
-export class LoanRow extends React.Component<Props, {}> {
-    constructor(props: Props) {
-        super(props);
-        this.state = {};
-    }
-
-    // Helpers
-    formatter = new Intl.NumberFormat('en-US', {
-        style: 'currency',
-        currency: 'USD',
-        minimumFractionDigits: 2
-    })
-
-    formatCurrency = (data: number) => {
-        return this.formatter.format(data);
-    }
-
-    // TODO: do
-    linearInterpolate = (start: number, end: number, curr: number) => {
-        return 1;
-    }
-
-    // TODO: max milliseconds in a day constant
-    calculateDailyCost = (loanPayment: ILoanPayment) => {
-        let now = new Date(0);
-        return this.linearInterpolate(0, 1000000, now.getMilliseconds()) * loanPayment.totalPayment;
+export class LoanRow extends React.Component<Props, State> {
+    constructor(props: Props, state: State) {
+        super(props, state);
+        this.state = {
+            helpers: new Helpers()
+        };
     }
 
     public render() {
@@ -45,7 +30,17 @@ export class LoanRow extends React.Component<Props, {}> {
                     {this.props.loan.lender}
                 </div>
                 <div className='col-sm text-right font-weight-bold'>
-                    {this.formatCurrency(this.calculateDailyCost(this.props.loan.currentPayment))} Paid Today
+                    <div>
+                        <div className='d-inline-flex bd-highlight text-success'>
+                            {this.state.helpers.formatCurrency(this.state.helpers.calculateCurrentCost(this.props.loan.currentPayment))}
+                        </div>
+                        <div className='d-inline-flex bd-highlight px-2'>
+                            of
+                        </div>
+                        <div className='d-inline-flex bd-highlight'>
+                            {this.state.helpers.formatCurrency(this.state.helpers.calculateDailyCost(this.props.loan.currentPayment))} Paid Today
+                        </div>
+                    </div>
                 </div>
             </div>
 

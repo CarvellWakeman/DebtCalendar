@@ -45,7 +45,6 @@ export class LoanDetails extends React.Component<Props, State> {
             });
     }
 
-
     public render() {
         // Render each transaction
         const paymentsJSX = this.state.payments
