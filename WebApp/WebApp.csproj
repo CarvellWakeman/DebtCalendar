@@ -21,15 +21,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="ClientApp\components\Account.tsx" />
-    <None Remove="ClientApp\components\Transaction.tsx" />
-    <None Remove="ClientApp\interfaces\IApiToken.ts" />
+    <None Remove="ClientApp\components\LoanPaymentRow.tsx" />
+    <None Remove="ClientApp\components\LoanRow.tsx" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\components\Transaction.tsx" />
-    <TypeScriptCompile Include="ClientApp\components\Account.tsx" />
-    <TypeScriptCompile Include="ClientApp\interfaces\IApiToken.ts" />
+    <TypeScriptCompile Include="ClientApp\components\LoanPaymentRow.tsx" />
+    <TypeScriptCompile Include="ClientApp\components\LoanRow.tsx" />
   </ItemGroup>
 
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
